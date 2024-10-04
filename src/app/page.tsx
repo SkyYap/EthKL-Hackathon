@@ -3,16 +3,21 @@
 import { VerificationLevel, IDKitWidget, useIDKit } from "@worldcoin/idkit";
 import type { ISuccessResult } from "@worldcoin/idkit";
 import { verify } from "./actions/verify";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { SimpleNavigationMenu } from "@/components/nav";
+import { Component } from "@/components/chart";
+import { handleCreateWallet } from "@/utils/handleCreateWallet";
 
 export default function Home() {
   const router = useRouter();
   const app_id = process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`;
   const action = process.env.NEXT_PUBLIC_WLD_ACTION;
+  const searchParams = useSearchParams(); // Use the useSearchParams hook
+  const referralName = searchParams.get('referral'); // Get the referral name
 
   if (!app_id) {
     throw new Error("app_id is not set in environment variables!");
@@ -53,14 +58,24 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center align-middle h-screen">
         {isConnected ? (
           <div className="flex flex-col items-center">
-            <p className="text-lg mb-2">Your nullifier hash:</p>
-            <p className="font-bold">{nullifierHash}</p>
+            <SimpleNavigationMenu/>
+            <Component/>
+            {/* <p className="text-lg mb-2">Your nullifier hash:</p>
+            <p className="font-bold">{nullifierHash}</p> */}
+            <button
+              className="border border-green-500 rounded-md"
+              onClick={handleCreateWallet}
+            >
+              <div className="mx-3 my-1 text-green-500">Create Wallet</div>
+            </button>
+
             <button
               className="border border-red-500 rounded-md my-2"
               onClick={handleDisconnect}
             >
-              <div className="mx-3 my-1 text-red-500">Disconnect</div>
+              <div className="mx-3 my-1 text-red-500">Logout</div>
             </button>
+
           </div>
         ) : (
           <div>
@@ -70,7 +85,7 @@ export default function Home() {
           items-center justify-center flex flex-1 flex-col p-6 sm:p-8 '
           >
             <div className='flex flex-col items-center'>
-              <p className='font-medium text-2xl'>You are referred by #Alvin3180</p>
+              <p className='font-medium text-2xl'>You are referred by {referralName || 'Guest'}</p>
               <p className='text-lg mt-2'>Verify your identity to claim your RM5.</p>
               <p className='text-sm text-muted-foreground mt-2'>
               Connect and verify with World ID.

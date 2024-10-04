@@ -1,7 +1,5 @@
 import '@/styles/globals.css';
 import { ReactNode } from 'react';
-import { WagmiProvider } from "wagmi";
-import { config } from "./wagmiConfig";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
