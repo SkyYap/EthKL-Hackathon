@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { SimpleNavigationMenu } from "@/components/nav";
-import { Component } from "@/components/chart";
-import { handleCreateWallet } from "@/utils/handleCreateWallet";
+import { Chart } from "@/components/chart";
+import Wallet from "@/components/wallet";
 
 export default function Home() {
   const router = useRouter();
@@ -59,16 +59,10 @@ export default function Home() {
         {isConnected ? (
           <div className="flex flex-col items-center">
             <SimpleNavigationMenu/>
-            <Component/>
+            <Chart/>
+            <Wallet/>
             {/* <p className="text-lg mb-2">Your nullifier hash:</p>
             <p className="font-bold">{nullifierHash}</p> */}
-            <button
-              className="border border-green-500 rounded-md"
-              onClick={handleCreateWallet}
-            >
-              <div className="mx-3 my-1 text-green-500">Create Wallet</div>
-            </button>
-
             <button
               className="border border-red-500 rounded-md my-2"
               onClick={handleDisconnect}

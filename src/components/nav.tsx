@@ -21,16 +21,9 @@ export function SimpleNavigationMenu() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/profile" passHref legacyBehavior>
+          <Link href="/deposit" passHref legacyBehavior>
             <NavigationMenuLink className="px-4 py-2 rounded-md bg-gray-800 text-white hover:bg-gray-700">
-              Profile
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/settings" passHref legacyBehavior>
-            <NavigationMenuLink className="px-4 py-2 rounded-md bg-gray-800 text-white hover:bg-gray-700">
-              Settings
+              Deposit
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
