@@ -5,6 +5,9 @@ import type { ISuccessResult } from "@worldcoin/idkit";
 import { verify } from "./actions/verify";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -48,8 +51,6 @@ export default function Home() {
   return (
     <div>
       <div className="flex flex-col items-center justify-center align-middle h-screen">
-        <p className="text-2xl mb-5">World ID Cloud Template</p>
-
         {isConnected ? (
           <div className="flex flex-col items-center">
             <p className="text-lg mb-2">Your nullifier hash:</p>
@@ -63,19 +64,77 @@ export default function Home() {
           </div>
         ) : (
           <div>
-            <IDKitWidget
-              action={action}
-              app_id={app_id}
-              onSuccess={onSuccess}
-              handleVerify={handleProof}
-              verification_level={VerificationLevel.Device}
-            />
-            <button
-              className="border border-black rounded-md my-2"
-              onClick={() => setOpen(true)}
-            >
-              <div className="mx-3 my-1">Verify with World ID</div>
-            </button>
+            <div
+          className='
+          md:rounded-bl-none rounded-bl-xl border-l
+          items-center justify-center flex flex-1 flex-col p-6 sm:p-8 '
+          >
+            <div className='flex flex-col items-center'>
+              <p className='font-medium text-2xl'>You are referred by #Alvin3180</p>
+              <p className='text-lg mt-2'>Verify your identity to claim your RM5.</p>
+              <p className='text-sm text-muted-foreground mt-2'>
+              Connect and verify with World ID.
+              </p>
+            </div>
+            <div className='mt-5 flex flex-col'>
+              <IDKitWidget
+                app_id={app_id}
+                action={action}
+                onSuccess={onSuccess}
+                handleVerify={handleProof}
+                // signal={address}
+                verification_level={VerificationLevel.Device}
+              >
+                {({ open }) => (
+                  <Button
+                    // ref={buttonRef}
+                    className='w-[290px] sm:w-[320px] '
+                    onClick={open}
+                  >Verify with World ID</Button>
+                )}
+              </IDKitWidget>
+              {
+                (
+                  <>
+                    <div className='relative py-4'>
+                      <Separator
+                        className='
+                          mt-6 absolute inset-0 flex items-center
+                        '
+                      />
+                      <div className='
+                       relative flex justify-center text-xs uppercase
+                      '>
+                        <p className='
+                          bg-background px-2 text-muted-foreground
+                        '>
+                          or
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                    onClick={() => setOpen(true)}
+                    variant="outline" className='
+                    w-[290px] sm:w-[320px] 
+                    rounded-lg'>
+                      Verify with Wallet & World ID
+                    </Button>
+                  </>
+                )
+              }
+              <Link
+                href="https://apps.apple.com/no/app/world-app-worldcoin-wallet/id1560859847"
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <p className='
+                  text-muted-foreground text-xs mt-4 text-center
+                '>
+                  Get the WorldID App -&gt;
+                </p>
+              </Link>
+            </div>
+          </div>
           </div>
         )}
       </div>
