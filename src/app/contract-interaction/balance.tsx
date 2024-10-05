@@ -16,7 +16,7 @@ export function Balance() {
 
       {/* <div>Balance (Default Chain): {default_?.formatted}</div>
       <div>Balance (Account Chain): {account_?.formatted}</div> */}
-      <div>Balance (Default Chain): {formatUnits(default_?.value ?? 0n, default_?.decimals ?? 18)}</div>
+      {/* <div>Balance (Default Chain): {formatUnits(default_?.value ?? 0n, default_?.decimals ?? 18)}</div> */}
       <div>Balance (Account Chain): {formatUnits(account_?.value ?? 0n, account_?.decimals ?? 18)}</div>
 
       <br />
