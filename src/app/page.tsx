@@ -80,7 +80,7 @@ export default function Home() {
           >
             <div className='flex flex-col items-center'>
               <p className='font-medium text-2xl'>You are referred by {referralName || 'Guest'}</p>
-              <p className='text-lg mt-2'>Verify your identity to claim your RM5.</p>
+              <p className='text-lg mt-2'>Verify your identity to claim your 0.001e.</p>
               <p className='text-sm text-muted-foreground mt-2'>
               Connect and verify with World ID.
               </p>
