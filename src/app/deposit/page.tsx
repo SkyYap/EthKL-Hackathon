@@ -7,10 +7,12 @@ import { ethers } from 'ethers';
 import { parseEther } from 'ethers';
 import { SimpleNavigationMenu } from '@/components/nav';
 import { Profile } from '@/components/Profile';
+import { useQueryCall, useUpdateCall } from '@ic-reactor/react';
+import ICPGetBankBalance from '@/components/ICPGetBankBalance';
 
 export default function DepositWithdrawFunds() {
   const [depositAmount, setDepositAmount] = useState<string>('');
-  const [withdrawAmount, setWithdrawAmount] = useState<string>(''); // State for withdrawal
+  const [withdrawAmount, setWithdrawAmount] = useState<string>(''); 
 
   // Initialize the write contract hook for deposit
   const { data: depositHash, error: depositError, isPending: isDepositPending, writeContract: depositContract } = useWriteContract();
@@ -125,6 +127,7 @@ export default function DepositWithdrawFunds() {
       <div style={{ display: 'none' }}>
         <Profile />
       </div>
+      {/* <ICPGetBankBalance /> */}
     </div>
   );
 }
